@@ -1,7 +1,7 @@
 # Maintainer: Sintan Santorum <c1scu0hh at anonaddy dot me>
 pkgname="movie-rename-bin"
 _pkgname="movie-rename"
-pkgver=2.1.4
+pkgver=2.1.5
 pkgrel=2
 pkgdesc="A simple tool to rename movies, written in Rust."
 arch=('x86_64')
