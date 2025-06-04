@@ -3,7 +3,7 @@ pkgname="topgrade-bin"
 _pkgname="topgrade"
 pkgver=16.0.3
 pkgrel=1
-pkgdesc="Invoke the upgrade procedure of multiple package managers"
+pkgdesc="Upgrade all the things"
 arch=('x86_64' 'aarch64' 'armv7h')
 url='https://github.com/topgrade-rs/topgrade'
 license=('GPL3')
@@ -12,9 +12,9 @@ conflicts=('topgrade')
 source_x86_64=("topgrade_x86_64-$pkgver.tar.gz::$url/releases/download/v$pkgver/$_pkgname-v$pkgver-x86_64-unknown-linux-musl.tar.gz")
 source_aarch64=("topgrade_aarch64-$pkgver.tar.gz::$url/releases/download/v$pkgver/$_pkgname-v$pkgver-aarch64-unknown-linux-musl.tar.gz")
 source_armv7h=("topgrade_armv7h-$pkgver.tar.gz::$url/releases/download/v$pkgver/$_pkgname-v$pkgver-armv7-unknown-linux-gnueabihf.tar.gz")
-b2sums_x86_64=('0855ef833378ca8a2f258af58388ba2deb75b0d6f235a6df577c8ed89a2aed4dbc9ed884f8a621cfcfe3cbb3e6edd042ebcae759efb07768469e6a4ea50f88bf')
-b2sums_aarch64=('ac6912988db0fa3942dbd3ea5a939102bd3f3b85f4252ccf327ae0d10a00b29629c0c32728ee2d98f0675e7a0a5892d09b8383445acfa986a4f780260010161e')
-b2sums_armv7h=('f647bda0df30f7e39f01bbafbe535c77c136411e634a9e37e604e8fb6161557d01d8d2d0e4eefdba60e6ca68103a82d7e3475804667019cd975d3dadb1e11195')
+b2sums_x86_64=('9e936e6a688c2ab620f18df0bd6d8f565439fdecdc7f86839195cc5b439c6401d130e805fd0563c82f18b3f07507f4e1156572b09fe499c5467116fc6acfacec')
+b2sums_aarch64=('31d1c061066335d13bcc7478be8f9124724154c2df095eec45711774303cc77099563fa3d7ce0ad4f2d6435511a4f1e4351958f36338971f94e72730f8fba002')
+b2sums_armv7h=('9dfa467f8dcaab3cf862e25bcbfa2228aa702d988369b65a0128bae32eeb571b8f5c9c6f7bbdf5b1eb880d53806a3c1a2c5ef3798d8dd3647e06a434f3c2dd36')
 package() {
 	# install binary
 	install -Dm755 ./topgrade "$pkgdir/usr/bin/topgrade"
