@@ -1,7 +1,7 @@
 # Maintainer: Sintan Santorum <c1scu0hh at anonaddy dot me>
 pkgname="chhoto-url-cli-bin"
 _pkgname="chhoto"
-pkgver=0.2.0
+pkgver=0.3.0
 pkgrel=1
 pkgdesc="A CLI tool to be used to interact with Chhoto URL."
 arch=('x86_64')
