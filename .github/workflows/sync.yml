@@ -1,0 +1,63 @@
+name: Update PKGBUILDs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Update PKGBUILDs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r dir; do
+            base="$(basename "$dir")"
+
+            [[ "$base" == ".git" ]] && continue
+            [[ "$base" == ".github" ]] && continue
+
+            echo "Processing $base"
+            curl -fsSL \
+              -o "${dir}/PKGBUILD" \
+              "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=${base}"
+          done < <(find . -mindepth 1 -maxdepth 1 -type d)
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          changed_files="$(git diff --name-only)"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          {
+            echo "Update PKGBUILDs"
+            echo
+            echo "Changed files:"
+            echo "$changed_files"
+          } > commit-message.txt
+
+          git commit -F commit-message.txt
+          git push
